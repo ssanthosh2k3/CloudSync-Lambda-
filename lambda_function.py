@@ -10,8 +10,8 @@ s3_client = boto3.client('s3')
 
 # MinIO Client Configuration
 MINIO_ENDPOINT = "objectstore.e2enetworks.net"  # ✅ Remove "https://"
-MINIO_ACCESS_KEY = "TEWT1N4BK3OG9TJ9JDZE"
-MINIO_SECRET_KEY = "FOH3XQ18WDZ3CQDHK54Q89JZJHK2NIQO79RHZ91U"
+MINIO_ACCESS_KEY = "your-key"
+MINIO_SECRET_KEY = "your-key"
 MINIO_BUCKET = "backup-23"
 
 minio_client = Minio(
