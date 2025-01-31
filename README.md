@@ -170,7 +170,8 @@ To test the function manually, use this sample event:
 ✅ **Set up AWS Lambda function** and S3 event triggers
 ✅ **Tested & deployed** the function for real-time synchronization
 
-## Note: If you are going to perform bulk file transfer increase memeory and timeout in AWS Lambda
+## Note: 
+If you are going to perform bulk file transfer increase memeory and timeout in AWS Lambda
 
 ---
 
