@@ -3,6 +3,8 @@
 ## 📌 Project Overview
 This project implements an AWS Lambda function to replicate objects from an AWS S3 bucket to a MinIO storage system. It automatically synchronizes file uploads and deletions, ensuring data consistency across cloud storage solutions.
 
+https://github.com/ssanthosh2k3/CloudSync-Lambda-/blob/master/Screenshot%20from%202025-01-31%2020-30-26.png
+
 ---
 
 ## 🎯 Use Cases
