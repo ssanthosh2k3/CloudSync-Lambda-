@@ -12,6 +12,8 @@ This project implements an AWS Lambda function to replicate objects from an AWS 
 -  Synchronization of deletions across storage platforms.
 -  Ensuring data availability in multiple storage backends.
 -  Secure transfer of files with IAM roles and access keys.
+-  If any files missing in destination, it will copy and upload in destination as well.
+-  No overwrite operation here.
 
 ---
 
