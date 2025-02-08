@@ -5,6 +5,22 @@ This project implements an AWS Lambda function to replicate objects from an AWS 
 
 ![jenkinsProcess Output](https://github.com/ssanthosh2k3/CloudSync-Lambda-/blob/master/Screenshot%20from%202025-01-31%2020-30-26.png)
 
+```
+graph TD
+    A[IAM Role Creation] --> B[Create IAM Role]
+    B --> C[Attach S3 Full Access Policy]
+    C --> D[Create Lambda Function]
+    D --> E[Configure Lambda with IAM Role]
+    E --> F[Create Test Event]
+    F --> G[Prepare Lambda Package]
+    G --> H[Add Function Code]
+    H --> I[Create ZIP File]
+    I --> J[Upload to AWS Lambda]
+    J --> K[Set Environment Variables]
+    K --> L[Configure S3 Event Notification]
+    L --> M[Test Lambda Function]
+    M --> N[Replication Successful]
+```
 ---
 
 ## 🎯 Use Cases
@@ -16,6 +32,12 @@ This project implements an AWS Lambda function to replicate objects from an AWS 
 -  No overwrite operation here.
 
 ---
+
+## Prerequisites
+
+- AWS Account with access to IAM, S3, and Lambda.
+- EOS-compatible object storage credentials (access key, secret key, endpoint).
+- Python 3.10 for Lambda runtime.
 
 ## 🚀 Advantages
 -  **Scalability:** Supports high-volume data replication.
@@ -90,10 +112,12 @@ from minio.error import S3Error
 s3_client = boto3.client('s3')
 
 # MinIO Client Configuration
-MINIO_ENDPOINT = "objectstore.e2enetworks.net"  # ✅ Remove "https://"
-MINIO_ACCESS_KEY = "TEWT1N4BK3OG9TJ9JDZE"
-MINIO_SECRET_KEY = "FOH3XQ18WDZ3CQDHK54Q89JZJHK2NIQO79RHZ91U"
-MINIO_BUCKET = "backup-23"
+MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT")
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY")
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
+MINIO_BUCKET = os.getenv("MINIO_BUCKET")
+MINIO_FOLDER = os.getenv("MINIO_FOLDER")
+S3_Bucket = os.getenv("S3_Bucket")
 
 minio_client = Minio(
     MINIO_ENDPOINT,
@@ -129,7 +153,7 @@ def sync_buckets(s3_bucket):
 def lambda_handler(event, context):
     try:
         # Sync S3 and MinIO buckets on Lambda invoke
-        s3_bucket = "dr-k8s-velero"  # Replace with your S3 bucket name
+        s3_bucket = S3_Bucket # Replace with your S3 bucket name
         sync_buckets(s3_bucket)
 
         # Handle events from S3 (ObjectCreated and ObjectRemoved)
@@ -174,8 +198,23 @@ def lambda_handler(event, context):
     }
 
 
-```
 
+```
+Configure Environment variable in Lambda Configuration:
+```
+MINIO_ACCESS_KEY
+
+MINIO_SECRET_KEY
+
+MINIO_ENDPOINT
+
+MINIO_BUCKET
+
+MINIO_FOLDER
+
+S3_Bucket
+
+```
 ---
 
 ## 📌 Sample Test Event
