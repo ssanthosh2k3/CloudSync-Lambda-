@@ -20,7 +20,7 @@ graph TD
     K --> L[Configure S3 Event Notification]
     L --> M[Test Lambda Function]
     M --> N[Replication Successful]
-
+```
 ---
 
 ## 🎯 Use Cases
