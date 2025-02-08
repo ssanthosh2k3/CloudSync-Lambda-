@@ -1,26 +1,21 @@
 # 🚀 AWS Lambda S3 to MinIO Replication
 
 ## 📌 Project Overview
-This project implements an AWS Lambda function to replicate objects from an AWS S3 bucket to a MinIO storage system. It automatically synchronizes file uploads and deletions, ensuring data consistency across cloud storage solutions.
+This project demonstrates how to set up live replication between an AWS S3 bucket and an EOS-compatible object storage system using AWS Lambda. The solution ensures that any object created, updated, or deleted in the S3 bucket is automatically replicated to the EOS storage system in real-time.
+
+Overview
+The project uses AWS Lambda to monitor an S3 bucket for changes (such as object creation or deletion) and replicates those changes to an EOS-compatible storage system (e.g., MinIO). The workflow involves:
+
+IAM Role Creation: Create an IAM role with permissions to access the S3 bucket.
+
+Lambda Function: Deploy a Python-based Lambda function to handle replication logic.
+
+S3 Event Notification: Configure S3 to trigger the Lambda function on object changes.
+
+MinIO Integration: Use the MinIO Python SDK to interact with the Minio-compatible storage system.
 
 ![jenkinsProcess Output](https://github.com/ssanthosh2k3/CloudSync-Lambda-/blob/master/Screenshot%20from%202025-01-31%2020-30-26.png)
 
-```mermaid
-graph TD
-    A[IAM Role Creation] --> B[Create IAM Role]
-    B --> C[Attach S3 Full Access Policy]
-    C --> D[Create Lambda Function]
-    D --> E[Configure Lambda with IAM Role]
-    E --> F[Create Test Event]
-    F --> G[Prepare Lambda Package]
-    G --> H[Add Function Code]
-    H --> I[Create ZIP File]
-    I --> J[Upload to AWS Lambda]
-    J --> K[Set Environment Variables]
-    K --> L[Configure S3 Event Notification]
-    L --> M[Test Lambda Function]
-    M --> N[Replication Successful]
-```
 ---
 
 ## 🎯 Use Cases
