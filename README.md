@@ -5,6 +5,7 @@ This project implements an AWS Lambda function to replicate objects from an AWS 
 
 ![jenkinsProcess Output](https://github.com/ssanthosh2k3/CloudSync-Lambda-/blob/master/Screenshot%20from%202025-01-31%2020-30-26.png)
 
+```mermaid
 graph TD
     A[IAM Role Creation] --> B[Create IAM Role]
     B --> C[Attach S3 Full Access Policy]
